@@ -35,7 +35,7 @@ def get_downloadable_data (df):
 st.download_button('DOWNLOAD DATA SET' , get_downloadable_data(smoking_dff), file_name='smoking.csv' )  
 smoking_dff.describe()
 
-smoking_df = smoking_dff.drop(columns= ["ID"])
+smoking_df = smoking_dff.drop(columns= ["ID", "gender", "oral", "tartar" ]  )
 
 numeric_columns = smoking_df.select_dtypes(['float64', 'float32', 'int32', 'int64']).columns
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -69,6 +69,8 @@ if st.checkbox('Distribution of LDL AND CHOLESTEROL Values Of CONDIDATES IN SCAT
   fig = px.scatter(smoking_df, x="LDL", y="Cholesterol", color="smoking", title=
         "LDL/Cholestrol")
   st.write(fig)
+
+smoking_df = pd.read_csv('smoking.csv (1).zip')
 
 smoking_df['BMI']= smoking_df ['weight(kg)'] / (smoking_df['height(cm)'] / 100 ) **2
 
